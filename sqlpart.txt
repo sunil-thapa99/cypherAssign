@@ -1,0 +1,147 @@
+--PART I
+-- Qs no. 1
+SELECT bc.no_of_copies
+FROM book_copies bc
+JOIN books b
+ON b.bookId = bc.bookId
+JOIN library_branches l
+ON l.branchId = bc.branchId
+WHERE b.title ='The Lost Tribe' 
+AND l.branchName = 'Sharpstown';
+
+
+-- Qs no. 2
+SELECT bc.no_of_copies
+FROM book_copies bc
+JOIN books b
+ON b.bookId = bc.bookId
+JOIN library_branches l
+ON l.branchId = bc.branchId
+WHERE b.title ='The Lost Tribe'
+
+-- Qs no. 3
+SELECT b.name
+FROM borrowers b
+WHERE b.cardNo NOT EXISTS(
+	SELECT * FROM borrowers b
+	JOIN book_loans bl
+	ON b.cardNo = bl.cardNo);
+	
+	
+-- Qs no. 4
+SELECT b.name, b.address 
+FROM borrowers b
+JOIN book_loans bl
+ON b.cardNo = bl.cardNo
+JOIN library_branches l
+ON l.branchId = bl.branchId
+WHERE l.branchName = 'Sharpstown'
+AND bl.dueDate = '22-DEC-2018';
+
+-- Qs no. 5 
+SELECT l.branchName, COUNT(bl.bookId)
+FROM library_branches l
+JOIN book_loons bl
+ON l.branchId = bl.branchId
+JOIN books b
+ON b.bookId = bl.bookId;
+
+-- Qs no. 6
+SELECT bo.name, bo.address, COUNT(bl.bookId)
+FROM borrowers bo
+JOIN book_loans bl
+ON bo.cardNo = bl.cardNo
+JOIN books.b 
+ON b.bookId = bl.bookId
+WHERE COUNT(bl.bookId) > 5;
+
+-- Qs no. 7
+SELECT b.title, bc.no_of_copies
+FROM books b
+JOIN book_authors ba
+ON b.bookId = ba.bookId
+JOIN book_copies bc 
+ON b.bookId = bc.bookId
+JOIN library_branches l
+ON l.branchId = bc.branchId 
+WHERE ba.authorName = 'Stephen King'
+AND l.branchName = 'CENTRAL';
+
+--PART II
+-- Qs no. 8
+SELECT CONCAT(e.fname+' '+e.lname) AS 'name'
+FROM employees e
+JOIN departments d
+ON e.ssn = d.mgrssn
+JOIN projects p 
+ON d.dNumber = p.dNum
+JOIN works_on w 
+ON p.pNumber = w.pNo
+WHERE d.dNum = 5 
+AND w.hours > 10]
+AND pname = 'ProductX';
+
+-- Qs no. 9
+SELECT p.pname, w.hours
+FROM projects p 
+JOIN works_on w 
+ON p.pNumber = w.pNo
+JOIN employees e 
+ON e.ssn =+ w.essn;
+
+-- Qs no. 10
+SELECT CONCAT(e.fname+' '+e.lname) AS 'name'
+FROM employees e
+JOIN works_on w
+ON e.ssn = w.essn 
+JOIN projects p 
+ON p.pNumber = w.pNo;
+
+-- Qs no. 11
+SELECT CONCAT(e.fname+' '+e.lname) AS 'name'
+FROM employees e
+WHERE e.ssn NOT EXISTS(
+	SELECT *
+	FROM employees e
+	JOIN works_on w
+	ON e.ssn = w.essn 
+	JOIN projects p 
+	ON p.pNumber = w.pNo);
+	
+-- Qs no. 12
+SELECT CONCAT(e.fname+' '+e.lname) AS 'name', e.addresss
+FROM employees e
+JOIN departments d
+ON e.ssn = d.mgrssn
+JOIN projects p 
+ON d.dNumber = p.dNum
+JOIN dept_locations dl
+ON d.dNumber = dl.dNumber
+WHERE COUNT(p.pNumber) >= 1
+AND p.location = 'Houston'
+AND dl.dlocation != 'Houston');
+
+-- Qs no. 13
+SELECT d.dname 
+FROM departments d 
+JOIN employees e 
+ON e.ssn = d.mgrssn
+WHERE e.ssn NOT EXISTS(
+	SELECT * FROM employees e 
+	JOIN dependents de 
+	ON e.ssn = de.essn);
+	
+-- Qs no. 14
+SELECT e.fname, e.lname, e.bdate, e.address, e.salary
+FROM employees e 
+WHERE e.salary > AVG(e.salary)
+ORDER BY e.salary DESC;
+
+
+-- Qs no. 15
+SELECT e.fname, e.lname, e.bdate, e.address, e.salary
+FROM employees e 
+JOIN departments d 
+ON e.ssn = d.mgrssn 
+WHERE e.salary > AVG(e.salary)
+ORDER BY e.salary ASC;

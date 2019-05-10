@@ -1,0 +1,5 @@
+------------references for matlab-----------------
+1-Simple Audio Player GUI - File Exchange - MATLAB Central. 2018. Simple Audio Player GUI - File Exchange - MATLAB Central. [ONLINE] Available at: https://www.mathworks.com/matlabcentral/fileexchange/53443-simple-audio-player-gui. [Accessed 20 December 2018].
+2-index of the items in a listbox - MATLAB Answers - MATLAB Central. 2018. index of the items in a listbox - MATLAB Answers - MATLAB Central. [ONLINE] Available at: https://www.mathworks.com/matlabcentral/answers/376091-index-of-the-items-in-a-listbox. [Accessed 23 December 2018].
+3-real time audio wave plot - MATLAB Answers - MATLAB Central. 2018. real time audio wave plot - MATLAB Answers - MATLAB Central. [ONLINE] Available at: https://www.mathworks.com/matlabcentral/answers/66508-real-time-audio-wave-plot. [Accessed 27 December 2018].
+4-Create error dialog box - MATLAB errordlg. 2018. Create error dialog box - MATLAB errordlg. [ONLINE] Available at: https://www.mathworks.com/help/matlab/ref/errordlg.html. [Accessed 27 December 2018].
